@@ -1,0 +1,142 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+
+
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:site" content="@marvelapp">
+    <!-- <meta name="twitter:creator" content="@"> -->
+    <meta name="twitter:title" content="My First Project">
+    <meta name="twitter:description" content="Marvel Prototype for My First Project">
+    <!-- <meta name="twitter:image:src" content="https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?quality=95&amp;fake=.png"> -->
+    <meta name="twitter:player" content="https://marvelapp.com/56bdgh8?emb=1&">
+    <meta name="twitter:player:width" content="1440">
+    <meta name="twitter:player:height" content="5206">
+    <meta name="twitter:player:stream" content="https://marvelapp.com/56bdgh8?emb=1&">
+    <meta name="twitter:player:stream:content_type" content="image/jpeg">
+
+    <meta property="og:title" content="My First Project">
+    <meta property="og:image" content="https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?quality=95&amp;fake=.png">
+    <meta property="og:site_name" content="Marvel Prototyping">
+    <meta property="og:description" content="Marvel Prototype for My First Project">
+
+<script type="text/javascript" src="//cdn.polyfill.io/v2/polyfill.min.js?features=Promise,fetch,Object.assign,Map,Set,requestAnimationFrame"></script>
+<link type="text/css" href="/static/css/prototype.6edf08eabc537ebe6174.css" rel="stylesheet" />
+<script type="text/javascript">
+(function () {
+    // Define if this is offline
+    var offline = false;
+
+    var trackerReady;
+
+    
+        function initGoogleAnalytics() {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-38711157-1', 'auto');
+          ga('send', 'pageview', "prototype-view");
+        }
+
+        function initIntercom() {
+          var w = window;
+          var ic = w.Intercom;
+          if (typeof ic === "function") {
+              ic('reattach_activator');
+              ic('update', intercomSettings);
+          } else {
+              var d = document;
+              var i = function () {
+                  i.c(arguments)
+              };
+              i.q = [];
+              i.c = function (args) {
+                  i.q.push(args)
+              };
+              w.Intercom = i;
+              function l() {
+                  var s = d.createElement('script');
+                  s.type = 'text/javascript';
+                  s.async = true;
+                  s.src = 'https://widget.intercom.io/widget/{app_id}';
+                  var x = d.getElementsByTagName('script')[0];
+                  x.parentNode.insertBefore(s, x);
+              }
+
+              if (w.attachEvent) {
+                  w.attachEvent('onload', l);
+              } else {
+                  w.addEventListener('load', l, false);
+              }
+          }
+        }
+
+        function initTracker() {
+          return fetch('/api/v1/integration/snippet/?project_id=3634826')
+            .then(function(response) {
+              if (!response.ok) {
+                return Promise.reject(response);
+              }
+              return response.json();
+            })
+            .then(function(response) {
+              var gaSnippet = response.snippets.filter(function(snippet) {
+                return snippet.provider === 'ga';
+              })[0];
+              if (!gaSnippet) {
+                return Promise.reject(response);
+              }
+              ga('create', gaSnippet.tracker_id, 'auto', 'marvelUserGATracker');
+            })
+            .catch(function(error){
+              // catching it so it does not create noise in the console
+            });
+        }
+
+        initGoogleAnalytics();
+        initIntercom();
+        trackerReady = initTracker();
+    
+
+    window.MARVELAPP = {
+      offline: offline,
+      projectId: "56bdgh8",
+      
+        projectConfig: {"last_active":"2018-12-20 12:42:20.547146","is_archived":false,"owner":{"username":"Robi Hribar","id":2167622,"avatar":{"url":"https://secure.gravatar.com/avatar/935a1aa09590171c21501df6b20ec437?s=300&d=blank","colour":"#13CE66"},"company_id":null},"likes":0,"owner_fk":2167622,"images":{"1":{"preview_thumbnail":"https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?width=320&quality=95&offset-y0&fake=.png","hotspots":[],"is_desktop":false,"seq":1,"source_platform_human":"New Canvas","top_pixel_colour":"229, 233, 242, 1.0","height":5206,"source_platform":"7","es_canvas_id":"5017170029711480076","is_app_icon":false,"id":51629583,"size":279329,"display_name":null,"uuid":"26646667-2cdc-4211-d20a-963d63a3dec4","bright_pixel_colour":null,"width":1440,"comment_count":0,"version":48,"hotspots_delta":"906d4464751b27fc4a5d34f17e8ef5fc","thumbnail":"https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?width=320&quality=90&height=568&crop=320:568,offset-y0&fake=.png","revision":null,"status":5,"preview_thumbnail_640":null,"description":null,"section_id":null,"bottom_pixel_colour":"255, 255, 255, 1.0","content_type":"image/png","name":"Image 1.png","layer_sync_uri":"","url":"https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?quality=95&fake=.png","layer_parent":null,"directory":null,"external_id":null,"status_pixel_colour":"229, 233, 242, 1.0"}},"team_name":null,"project_image":"https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?width=320&quality=90&height=568&crop=320:568,offset-y0&fake=.png","id":3634826,"published_time":null,"team_fk":null,"pusher_channel":"private-project-production_3634826","uuid":"3229c3b2-727e-44b5-b69d-1a3f09b571ec","sync_started":null,"total_size":287482,"bright_pixel_colour":null,"team_icon":null,"state":1,"sequence_delta":"d2bfec34f57d812c93e842bc1c5af1f0","vanity_url":"https://marvelapp.com/56bdgh8","user_test_pk":null,"sync_ended":null,"version":1,"hotspots_delta":"e753cd8866461ebf478d3f8a41dd2fe3","type":1,"owner_username":"Robi Hribar","explore_url":"https://marvelapp.com/explore/3634826/my-first-project","embed_url":"https://marvelapp.com/56bdgh8?emb=1&iosapp=false&frameless=false","description":"None","views":0,"es_canvas_id":null,"company":null,"num_images":2,"human_url":null,"pusher_public_channel":"prototype-production_3634826","isprivate":0,"project_base_image":"https://marvel-live.freetls.fastly.net/serve/2018/12/cdbc85f8f87b49a289284872d9ed2b0d.png?quality=95&fake=.png","password":null,"properties":[{"read_only":true,"id":73937652,"uuid":"42a8e535-9525-4b6c-b810-4dee1ab450c8","name":"prj-lookback-ever-enabled","value":"0","description":"Lookback ever been enabled for this project"},{"read_only":true,"id":73937650,"uuid":"5ada0f2b-3a01-42bb-8336-28cf34e57d27","name":"prj-comments-ever-enabled","value":"1","description":"Comments have ever been enabled for this project"},{"read_only":false,"id":73937656,"uuid":"5168d0a1-8755-46e4-af9a-cdb93b7144fc","name":"ui-prj-remove-status","value":"0","description":"Removes status bar on project"},{"read_only":false,"id":73937658,"uuid":"045c9b0a-57b2-4f32-819b-fbe32e0193c1","name":"ui-prj-center-image","value":"0","description":"Center image instead of aligning left"},{"read_only":false,"id":73937660,"uuid":"649fe156-6d89-491e-940c-63615ab20eec","name":"ui-prj-prototype-background-hex","value":"FFFFFF","description":"Set background for prototype background"},{"read_only":false,"id":73937667,"uuid":"25f41788-b5b6-46aa-a9ac-da7fe725a417","name":"ui-prj-show-hints","value":"0","description":"Show hints on prototype"},{"read_only":false,"id":73937669,"uuid":"7a59b6ee-a46c-45d3-9943-368a673d7bd5","name":"ui-prj-frame-colour","value":"black","description":"Set phone colour"},{"read_only":false,"id":73937654,"uuid":"824c39dc-0e40-45b3-8392-f2ee03b767b1","name":"ui-prj-responsive","value":"0","description":"Set images as responsive"},{"read_only":false,"id":73937662,"uuid":"b0920f7d-7a4b-414e-ac2a-a3f11de4de11","name":"ui-prj-center-overflow","value":"0","description":"Center images and hide overflow on non-responsive images"},{"read_only":false,"id":73937653,"uuid":"cb9c58d8-ac8a-41d4-b78c-895669dbfab1","name":"ui-prj-background-hex","value":"FFFFFF","description":"Set background colour for prototype preview"},{"read_only":false,"id":73937655,"uuid":"501d94fe-f895-48b6-a7c4-21e593f6580b","name":"ui-prj-thumbnail-width","value":"0","description":"Set thumbnail width for project view"},{"read_only":false,"id":73937666,"uuid":"19410124-bb3d-4d95-98a2-5b444d9d5370","name":"prj-comments-enabled","value":"1","description":"Enable comments for this project"},{"read_only":false,"id":73937664,"uuid":"27460b87-9750-4896-bef9-03dbc3bcb7ca","name":"ui-prj-disable-frame","value":"0","description":"New site features for user"},{"read_only":false,"id":83199905,"uuid":"640cce0c-47f2-49e3-8f6a-4ee569bee243","name":"ui-proj-thumbnail-size","value":"M","description":"Marvel 3 thumbnail size for grid"},{"read_only":false,"id":73937651,"uuid":"43c5c03f-6fa5-4c07-a6d7-68eb65ec35da","name":"ui-prj-status-bar","value":"0","description":"Set status bar background colour"},{"read_only":false,"id":73937668,"uuid":"49cbc51a-8fd2-4f61-b6ee-e9a5955b56ba","name":"ui-prj-explore-background-hex","value":"#000000","description":"Set background colour for explore view"},{"read_only":false,"id":73937663,"uuid":"934be97d-2dae-423e-9714-67e2a77dec83","name":"prj-lookback-enabled","value":"0","description":"Enable Lookback for this project"},{"read_only":false,"id":73937649,"uuid":"23d6c787-1e3d-4a31-a59f-8478a3bf766d","name":"ui-prj-frame","value":"web-frame","description":"Set phone frame"},{"read_only":false,"id":73937661,"uuid":"63208d63-f7ba-4a87-9f2c-e84092a17510","name":"ui-prj-disable-swipe","value":"1","description":"Disable prototype swipes"},{"read_only":false,"id":73937665,"uuid":"028cb4be-b455-4c49-b8ec-5c0c20866d10","name":"ui-prj-orientation","value":"portrait","description":"Set phone orientation"},{"read_only":false,"id":73937659,"uuid":"96288284-8a16-4cc0-b0cf-c0cc498ed044","name":"ui-prj-retina-scale","value":"0","description":"Scale images to half their original width for retina images"}],"app_icon":null,"canvas_images":[],"is_deleted":false,"name":"My First Project","date_modified":"2019-05-24 17:56:43","sections":[],"pusher_anon_channel_prefix":"anon-production","cursor":"","team_uri":null,"published":false,"is_syncing":0,"date_created":"2018-12-14 14:00:19","is_pro":false,"resource_uri":"/project/3634826/"},
+        settings: {"CANVAS_EASEL_HOST": "https://easel.marvelapp.com", "DISALLOWED_FILENAME_CHARACTERS": "\\\"<>=", "MIXPANEL_TOKEN": "e12a882f7a6eaf4730758a8a61ac2501", "ENVIRONMENT": "live", "BOX_COM_CLIENT_ID": "wo18m8uju79g09r64gf5r7xm59xf6zif", "ENABLE_INTERCOM": true, "CANVAS_TOKEN_PROVIDER_HOST": "", "ENABLE_HUBSPOT": true, "ENABLE_FB": true, "MARVEL_CORS_PROXY": "https://marvelapp.com/proxy/", "INTERCOM_APP_ID": "9afe6b55dbac3807f4bc7ebcdf1fc0470c2454f1", "STRIPE_PUBLISHABLE": "pk_live_1afBzKMbfYd1vhu8lsneB1Zb", "BOB_ROSS_HOST": "https://bob-ross.marvelapp.com", "PUSHER": {"PROTOTYPE_CHANNEL_PREFIX": "prototype-production_", "PROJECT_CHANNEL_PREFIX": "private-project-production_", "PRESENCE_CHANNEL_PREFIX": "presence-presence-production_", "USER_CHANNEL_PREFIX": "private-user-production_", "ANON_CHANNEL_PREFIX": "anon-production_", "EXPLORE_CHANNEL_PREFIX": "explore-production_"}, "BASE_URL": "https://marvelapp.com", "APP_SENTRY_DSN": "https://873a8ca087a0492d8d22b808d6931306@sentry.io/97119", "DISABLE_COMMENT_WRITES": false, "LAUNCH_DARKLY_API_KEY": "5b993ab7e7585f1695351237", "GOOGLE_CLIENT_ID": "308573482263-ddask8oq90fg9n9o5t6ub8190v5nqvta.apps.googleusercontent.com", "PROTOTYPE_SENTRY_DSN": "https://883389dfaa2349e891ef7b4f0a6cec51@sentry.io/96884", "ENABLE_GA": true, "SITE_SENTRY_DSN": "https://3fad520e195b4e168ceb79d16cbce216@app.getsentry.com/38273", "REVISION": "r1178"},
+        currentUser: {},
+      
+      iOSApp: 0,
+      role: "Client",
+
+      trackAsync: function(location, screenName) {
+        
+            trackerReady.then(function() {
+                ga('marvelUserGATracker.send', 'pageview', {
+                    page: location.pathname + screenName,
+                    title: screenName
+                });
+            });
+        
+      }
+    };
+})();
+</script>
+</head>
+<body>
+  <div id="prototype"></div>
+  
+    <script type="text/javascript" src="/static/common-bundle.ebc356e3c60fbe34521d.js" ></script>
+  
+  <script type="text/javascript" src="/static/prototype-bundle.f5ca424fa5e3560704cd.js" ></script>
+</body>
+</html>
